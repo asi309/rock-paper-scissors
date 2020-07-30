@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Rock-paper-scissors
+        </title>
+        <script>
+            const choices = ['Rock', 'Paper', 'Scissors'];
+            const computerPlay = () => {
+                choice = Math.floor(Math.random() * choices.length);
+                return choices[choice];
+            };
+            const round = (playerSelection, computerSelection) => {
+                if( playerSelection.toLowerCase() === computerSelection.toLowerCase()){
+                    return 'It\'s a tie';
+                }
+                if (playerSelection.toLowerCase() === 'rock') {
+                    if (computerSelection.toLowerCase() === 'scissors') {
+                        return 'You win! Rock beats Scissors';
+                    }
+                    if (computerSelection.toLowerCase() === 'paper') {
+                        return 'Computer wins! Paper beats Rock';
+                    }
+                } else if (playerSelection.toLowerCase() === 'scissors') {
+                    if (computerSelection.toLowerCase() === 'rock') {
+                        return 'Computer wins! Rock beats Scissors';
+                    }
+                    if (computerSelection.toLowerCase === 'paper') {
+                        return 'You win! Scissors beat Paper';
+                    }
+                } else if (playerSelection.toLowerCase() === 'paper') {
+                    if (computerSelection.toLowerCase() === 'rock') {
+                        return 'You win! Paper beats Rock';
+                    }
+                    if (computerSelection.toLowerCase() === 'scissors') {
+                        return 'Computer wins! Scissors beats Paper'
+                    }
+                } 
+            };
+            const promptNumRounds = () => prompt('How many rounds do you want to play?');
+            let numRounds = promptNumRounds();
+            const game = (numRounds) => {
+                let numPlayerWins = 0;
+                let numComputerWins = 0;
+                let r = 0;
+                while(r < numRounds) {
+                    const playerSelection = prompt('Select your choice -> Rock, Paper, Scissors');
+                    const computerSelection = computerPlay();
+                    const result = round(playerSelection, computerSelection);
+                    console.log(result);
+                    if (result.includes('Computer')) {
+                        numComputerWins += 1;
+                    } else {
+                        numPlayerWins += 1;
+                    }
+                    r += 1;
+                }
+                if (numComputerWins > numPlayerWins) {
+                    // console.log(`Computer wins! ${numComputerWins} over ${numPlayerWins}`);
+                    console.log("Computer wins!");
+                } else if (numComputerWins < numPlayerWins) {
+                    // console.log(`Player wins! ${numPlayerWins} over ${numComputerWins}`);
+                    console.log("Player wins!");
+                } else if (numComputerWins === numPlayerWins) {
+                    console.log("It's a tie");
+                }
+            };
+            game(numRounds);
+        </script>
+    </head>
+</html>
